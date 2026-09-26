@@ -1,0 +1,24 @@
+{
+  "imports": {
+    "hono": "jsr:@hono/hono@^4.13.8"
+  },
+  "tasks": {
+    "start": "deno run --env-file -P main.ts",
+    "watch": "deno run --env-file -P --watch-hmr main.ts"
+  },
+  "compilerOptions": {
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "dom.asynciterable",
+      "deno.ns"
+    ]
+  },
+  "permissions": {
+    "default": {
+      "env": true,
+      "net": true,
+      "read": true,
+    }
+  }
+}
