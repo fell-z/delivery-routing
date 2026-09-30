@@ -4,18 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" type="text/css" href="style.css">
+    <link
+      rel="stylesheet"
+      href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      integrity="sha256-p4NxAoJBhIIN+hmNHrzRCf9tD/miZyoHS5obTRR9BMY="
+      crossorigin=""
+    >
+    <!-- Make sure you put this AFTER Leaflet's CSS -->
+    <script
+      src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+      integrity="sha256-20nQCchB9co0qIjJZRGuk2/Z9VM+kNiyxNV1lvTlZBo="
+      crossorigin=""
+    ></script>
+    <script src="Polyline.encoded.js"></script>
+    <script type="importmap">
+      {
+        "imports": {
+          "map": "./map.js"
+        }
+      }
+    </script>
     <script type="module" src="script.js" defer></script>
     <title>AeD2 - Delivery Routing</title>
   </head>
   <body>
     <header>
       <h1>Roteamento de entregas</h1>
+      <p>Clique nos marcadores depois de calcular a rota para ver a ordem de entregas</p>
     </header>
     <main>
-      <div>
-        <button type="button" id="btn--call-api">Call API</button>
+      <div id="map"></div>
+      <div class="controls">
+        <div>
+          <button type="button" id="reset-button">Resetar</button>
+          <button type="button" id="calculate-route-button">Calcular rota</button>
+        </div>
+
+        <label>
+          Colocar:
+          <select name="place-object" id="place-object-select">
+            <option value="nothing" selected>Nada</option>
+            <option value="job">Trabalho</option>
+            <option value="vehicle">Veículo</option>
+          </select>
+        </label>
+
+        <div>
+          <ul id="job-entries"></ul>
+
+          <template id="job-entry-template">
+            <li class="job-entry">
+              Trabalho <input type="text" name="desc"> das
+              <input type="time" name="from">
+              até as
+              <input type="time" name="to">
+              <button type="button" class="remove-job-button">Remover</button>
+            </li>
+          </template>
+        </div>
       </div>
-      <pre id="api-output">API call response message: No message yet.</pre>
     </main>
+    <footer>
+      <p>
+        <a href="https://www.flaticon.com/free-icons/car" title="car icons">Car icons created by fjstudio - Flaticon</a>
+      </p>
+    </footer>
   </body>
 </html>

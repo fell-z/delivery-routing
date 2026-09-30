@@ -1,5 +1,46 @@
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+}
+
+ul {
+  padding: revert;
+}
+
 body {
   font-family:
     system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell,
     "Open Sans", "Helvetica Neue", sans-serif;
+  padding: 32px;
+}
+
+#map {
+  outline: 2px solid red;
+  min-height: 600px;
+  max-width: 800px;
+  margin: 32px 0;
+  flex: 1;
+}
+
+label {
+  display: flex;
+  gap: 8px;
+}
+
+input,
+select,
+button {
+  font: inherit;
+}
+
+button {
+  padding: 0 6px;
+}
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }

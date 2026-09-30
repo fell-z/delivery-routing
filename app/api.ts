@@ -16,6 +16,7 @@ type Vehicle = {
 
 type Job = {
   id: number;
+  description: string,
   location: Location;
   service: number;
   delivery: [number]; // normally it would be number[], but in this use case, one is enough
@@ -35,6 +36,8 @@ type VehicleParam = {
 };
 
 type JobParam = {
+  id: number,
+  description: string,
   location: Location;
   timeWindow?: TimeWindow;
 };
@@ -62,7 +65,8 @@ function toApiBody(params: RouteParams): ApiBody {
     }
 
     apiBody.jobs.push(<Job>{
-      id: i + 1,
+      id: j.id,
+      description: j.description,
       location: j.location,
       service: 0,
       delivery: [1],

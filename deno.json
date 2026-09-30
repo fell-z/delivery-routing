@@ -1,6 +1,7 @@
 {
   "imports": {
-    "hono": "jsr:@hono/hono@^4.13.8"
+    "hono": "jsr:@hono/hono@^4.13.8",
+    "map": "./public/map.js"
   },
   "tasks": {
     "start": "deno run --env-file -P main.ts",
@@ -12,6 +13,9 @@
       "dom.iterable",
       "dom.asynciterable",
       "deno.ns"
+    ],
+    "types": [
+      "npm:@types/leaflet"
     ]
   },
   "permissions": {
