@@ -1,11 +1,15 @@
 # Roteamento de entregas - AeD2
 
-Esse projeto utitiza Deno + Framework Hono para montar o servidor intermediário entre Cliente e API.
+Esse projeto utitiza Node + Framework Hono para montar o servidor intermediário entre Cliente e API.
 
-No Frontend, HTML/CSS/JS puros são usados, com a biblioteca Leaflet para criar os mapas.
+No Frontend, Svelte5 foi utilizado, com as bibliotecas Sveaflet + Leaflet para criar os mapas.
 
-A aplicação foi desenvolvida e testada com Deno 2.9.7 em um ambiente WSL2 Arch Linux.
-Mas qualquer versão do Deno 2.9.x deve funcionar.
+> [!NOTE]
+> A parte do SvelteKit na aplicação delega toda requisição para o servidor Hono.
+> Portanto, é simples desacoplar a API do frontend em Svelte e integrar com outar biblioteca/framework.
+
+A aplicação foi desenvolvida e testada com Node v24.19.0 em um ambiente WSL2 Arch Linux.
+Mas qualquer versão do Node v24.x.x deve funcionar.
 
 ## Como configurar e iniciar a aplicação
 
@@ -21,12 +25,15 @@ API_KEY={sua_chave}
 
 Depois de configurado, instale as dependências com:
 ```bash
-deno install
+npm install
 ```
 
 Então, inicie a aplicação:
 ```bash
-deno task start # Para iniciar o servidor
+npm run build # Para compilar a aplicação
+node build    # Para iniciar a aplicação compilada
 # OU
-deno task watch # Para iniciar o servidor de desenvolvimento
+npm run dev # Para iniciar o servidor de desenvolvimento
 ```
+
+Qualquer configuração sobre a implantação com Node como porta, IP, etc. pode ser vista na [documentação oficial](https://svelte.dev/docs/kit/adapter-node)
