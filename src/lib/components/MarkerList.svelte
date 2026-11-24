@@ -10,7 +10,8 @@
   let { title, markers }: Props = $props()
 
   function onDeleteClick(e: any) {
-    const index = markers.findIndex((m) => m.id === e.target.value);
+    const id = parseInt(e.target.value);
+    const index = markers.findIndex((m) => m.id === id);
     markers.splice(index, 1);
   }
 </script>
