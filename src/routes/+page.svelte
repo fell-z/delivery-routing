@@ -37,6 +37,8 @@
   }
 
   async function postHandler() {
+    if (jobs.length === 0 || vehicles.length === 0) return;
+
     const payload = { jobs, vehicles };
     console.log("Payload:\n\n");
     console.log(JSON.stringify(payload, null, 2));

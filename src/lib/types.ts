@@ -26,7 +26,10 @@ export interface ClientBody {
 
 export type LocationParam = [lng: number, lat: number];
 export type TimeWindowParam = [start: number, end: number];
-export type JobParam = Override<Job, { location: LocationParam; time_window?: TimeWindowParam[] }>;
+export type JobParam = Override<
+  Omit<Job, "time_window">,
+  { location: LocationParam; time_windows?: TimeWindowParam[] }
+>;
 export type VehicleParam = Override<
   Omit<Vehicle, "location">,
   { start: LocationParam; end: LocationParam; time_window?: TimeWindowParam; profile?: string }

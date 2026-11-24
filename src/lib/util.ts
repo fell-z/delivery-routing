@@ -56,7 +56,7 @@ function jobAsParam(job: Job) {
   };
 
   if (time_window[0] !== "" && time_window[1] !== "") {
-    jobParam.time_window = [timeWindowAsParam(time_window)];
+    jobParam.time_windows = [timeWindowAsParam(time_window)];
   }
 
   return jobParam;
@@ -65,8 +65,8 @@ function jobAsParam(job: Job) {
 export function toApiBody(params: ClientBody) {
   const apiBody: ApiBody = { vehicles: [], jobs: [], options: { g: true } };
 
-  params.vehicles.forEach((j) => {
-    apiBody.vehicles.push(vehicleAsParam(j));
+  params.vehicles.forEach((v) => {
+    apiBody.vehicles.push(vehicleAsParam(v));
   });
 
   params.jobs.forEach((j) => {

@@ -25,6 +25,7 @@ const api = new Hono()
     const cbody = await c.req.json<ClientBody>();
     const abody = toApiBody(cbody);
 
+    console.log("Converted API body:");
     console.log(JSON.stringify(abody, null, 2));
 
     try {
