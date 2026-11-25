@@ -2,6 +2,7 @@
   import "../reset.css";
   import favicon from "#lib/assets/favicon.svg";
   import type { LayoutProps } from "./$types";
+  import "leaflet-arrowheads";
 
   let { children }: LayoutProps = $props();
 </script>

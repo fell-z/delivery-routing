@@ -1,13 +1,13 @@
 <script lang="ts">
-  import type { Base } from "#lib/types.ts";
+  import type { Vehicle, Job } from "#lib/types.ts";
   import Button from "#lib/components/Button.svelte";
 
   interface Props {
     title: string;
-    markers: Base[];
+    markers: (Job | Vehicle)[];
   }
 
-  let { title, markers }: Props = $props()
+  let { title, markers }: Props = $props();
 
   function onDeleteClick(e: any) {
     const id = parseInt(e.target.value);
@@ -21,30 +21,40 @@
 
   {#if markers.length > 0}
     <ol>
-      {#each markers as marker (marker.id)}
+      {#each markers as m (m.id)}
         <li>
           <label>
             Description:
-            <input type="text" bind:value={marker.description}>
+            <input type="text" bind:value={m.description}>
           </label>
-          {#if marker.time_window !== undefined}
+
+          {#if "capacity" in m}
             <label>
-              Time window
-              <span class="field--time">
-                from
-                <input type="time" bind:value={marker.time_window[0]}>
-              </span>
-              <span class="field--time">
-                to
-                <input type="time" bind:value={marker.time_window[1]}>
-              </span>
+              Capacity:
+              <input type="number" min="0" bind:value={m.capacity[0]}>
+            </label>
+          {:else if "delivery" in m}
+            <label>
+              Delivery:
+              <input type="number" min="0" bind:value={m.delivery[0]}>
             </label>
           {/if}
-          <p>Latitude: {marker.location.lat}</p>
-          <p>Longitude: {marker.location.lng}</p>
-          <Button value={marker.id} onclick={onDeleteClick}>
-            Delete
-          </Button>
+
+          <label>
+            Time window
+            <span class="field--time">
+              from
+              <input type="time" bind:value={m.time_window[0]}>
+            </span>
+            <span class="field--time">
+              to
+              <input type="time" bind:value={m.time_window[1]}>
+            </span>
+          </label>
+
+          <p>Latitude: {m.location.lat}</p>
+          <p>Longitude: {m.location.lng}</p>
+          <Button value={m.id} onclick={onDeleteClick}>Delete</Button>
         </li>
       {/each}
     </ol>

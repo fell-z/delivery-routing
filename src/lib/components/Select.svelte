@@ -1,13 +1,12 @@
 <script lang="ts">
   import type { HTMLSelectAttributes } from "svelte/elements";
+  import { capitalize } from "#lib/util.ts";
 
   interface Props extends HTMLSelectAttributes {
     options: readonly any[];
   }
 
   let { value = $bindable(), options, ...rest }: Props = $props();
-
-  const capitalize = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
   let formattedOptions = $derived(
     options.map((o) => ({ value: o, label: capitalize(String(o)) })),

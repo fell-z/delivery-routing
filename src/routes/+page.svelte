@@ -24,10 +24,14 @@
 
     switch (markerType) {
       case "job":
-        jobs.push({ ...newMarker, description: `Job ${nextId}` });
+        if (jobs.length >= 50) return;
+
+        jobs.push({ ...newMarker, description: `Job ${nextId}`, delivery: [0] });
         break;
       case "vehicle":
-        vehicles.push({ ...newMarker, description: `Vehicle ${nextId}` });
+        if (vehicles.length >= 3) return;
+
+        vehicles.push({ ...newMarker, description: `Vehicle ${nextId}`, capacity: [0] });
         break;
       default:
         return;
@@ -36,7 +40,7 @@
     nextId++;
   }
 
-  async function postHandler() {
+  async function calculateHandler() {
     if (jobs.length === 0 || vehicles.length === 0) return;
 
     const payload = { jobs, vehicles };
@@ -59,7 +63,7 @@
 <div class="controls">
   <h2>Controls</h2>
   <Select bind:value={markerType} options={MARKER_TYPES} />
-  <Button onclick={postHandler}>Calculate routes</Button>
+  <Button onclick={calculateHandler}>Calculate routes</Button>
 </div>
 
 <DMap {markers} {routes} {onMapClick} />
