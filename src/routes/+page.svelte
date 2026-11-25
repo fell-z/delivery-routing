@@ -10,7 +10,7 @@
 
   let routes     = $state<any[]>();
   let nextId     = $state(0);
-  let markerType = $state<MarkerType>("none");
+  let markerType = $state<MarkerType>("nenhum");
   let jobs       = $state<Job[]>([]);
   let vehicles   = $state<Vehicle[]>([]);
   let markers    = $derived([...jobs, ...vehicles]);
@@ -23,15 +23,15 @@
     };
 
     switch (markerType) {
-      case "job":
+      case "entrega":
         if (jobs.length >= 50) return;
 
-        jobs.push({ ...newMarker, description: `Job ${nextId}`, delivery: [0] });
+        jobs.push({ ...newMarker, description: `Entrega ${nextId}`, delivery: [0] });
         break;
-      case "vehicle":
+      case "veículo":
         if (vehicles.length >= 3) return;
 
-        vehicles.push({ ...newMarker, description: `Vehicle ${nextId}`, capacity: [0] });
+        vehicles.push({ ...newMarker, description: `Veículo ${nextId}`, capacity: [0] });
         break;
       default:
         return;
@@ -61,16 +61,16 @@
 </script>
 
 <div class="controls">
-  <h2>Controls</h2>
+  <h2>Controles</h2>
   <Select bind:value={markerType} options={MARKER_TYPES} />
-  <Button onclick={calculateHandler}>Calculate routes</Button>
+  <Button onclick={calculateHandler}>Calcular rotas</Button>
 </div>
 
 <DMap {markers} {routes} {onMapClick} />
 
 <SideBySide>
-  <MarkerList title="Jobs" markers={jobs} />
-  <MarkerList title="Vehicles" markers={vehicles} />
+  <MarkerList title="Entregas" markers={jobs} />
+  <MarkerList title="Veículos" markers={vehicles} />
 </SideBySide>
 
 <style>

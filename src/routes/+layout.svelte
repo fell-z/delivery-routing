@@ -13,7 +13,7 @@
 </svelte:head>
 
 <header>
-  <h1>Delivery Routing</h1>
+  <h1>Roteamento de Entregas</h1>
 </header>
 
 <main>

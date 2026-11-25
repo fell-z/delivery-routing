@@ -46,5 +46,5 @@ export interface ApiBody {
   };
 }
 
-export const MARKER_TYPES = ["none", "job", "vehicle"] as const;
+export const MARKER_TYPES = ["nenhum", "entrega", "veículo"] as const;
 export type MarkerType = (typeof MARKER_TYPES)[number];
