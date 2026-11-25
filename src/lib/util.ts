@@ -27,7 +27,7 @@ function locationAsParam(location: Location): LocationParam {
 }
 
 function vehicleAsParam(vehicle: Vehicle) {
-  const { id, description, location, time_window } = vehicle;
+  const { id, description, location, time_window, capacity } = vehicle;
 
   const locationParam = locationAsParam(location);
 
@@ -37,6 +37,7 @@ function vehicleAsParam(vehicle: Vehicle) {
     start: locationParam,
     end: locationParam,
     profile: "driving-car",
+    capacity
   };
 
   if (time_window[0] !== "" && time_window[1] !== "") {
@@ -47,12 +48,13 @@ function vehicleAsParam(vehicle: Vehicle) {
 }
 
 function jobAsParam(job: Job) {
-  const { id, description, location, time_window } = job;
+  const { id, description, location, time_window, delivery } = job;
 
   const jobParam: JobParam = {
     id,
     description,
     location: locationAsParam(location),
+    delivery
   };
 
   if (time_window[0] !== "" && time_window[1] !== "") {
@@ -77,8 +79,12 @@ export function toApiBody(params: ClientBody) {
 }
 
 export function polylineColor(index: number) {
-  const lightness = 100 - 10 * (index % 10);
-  const chroma = index % 2 === 0 ? 70 : 29;
-  const hue = 40 * index + 20;
+  const lightness = index % 2 === 0 ? 80 : 40;
+  const chroma = index % 2 === 0 ? 80 : 50;
+  const hue = 40 * index + 120;
   return `oklch(${lightness}% ${chroma}% ${hue})`;
+}
+
+export function capitalize(s: string) {
+  return s.charAt(0).toUpperCase() + s.slice(1);
 }

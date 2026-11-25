@@ -11,12 +11,15 @@ export interface Base {
   time_window: TimeWindow;
 }
 
+// Both fields 'delivery' and 'capacity' are an array of multidimensional numbers.
+// In other words, each number can mean anything you want.
+// In this case it is weight in the 1st position.
 export interface Job extends Base {
-  delivery?: [weight: number]; // normally it would be number[], but in this use case, one is enough
+  delivery: [weight: number];
 }
 
 export interface Vehicle extends Base {
-  capacity?: [weight: number]; // see comment below for delivery
+  capacity: [weight: number];
 }
 
 export interface ClientBody {
