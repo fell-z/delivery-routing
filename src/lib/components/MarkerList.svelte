@@ -24,42 +24,42 @@
       {#each markers as m (m.id)}
         <li>
           <label>
-            Description:
+            Descrição
             <input type="text" bind:value={m.description}>
           </label>
 
           {#if "capacity" in m}
             <label>
-              Capacity:
+              Capacidade:
               <input type="number" min="0" bind:value={m.capacity[0]}>
             </label>
           {:else if "delivery" in m}
             <label>
-              Delivery:
+              Carga:
               <input type="number" min="0" bind:value={m.delivery[0]}>
             </label>
           {/if}
 
           <label>
-            Time window
+            Intervalo de tempo
             <span class="field--time">
-              from
+              de
               <input type="time" bind:value={m.time_window[0]}>
             </span>
             <span class="field--time">
-              to
+              às
               <input type="time" bind:value={m.time_window[1]}>
             </span>
           </label>
 
           <p>Latitude: {m.location.lat}</p>
           <p>Longitude: {m.location.lng}</p>
-          <Button value={m.id} onclick={onDeleteClick}>Delete</Button>
+          <Button value={m.id} onclick={onDeleteClick}>Deletar</Button>
         </li>
       {/each}
     </ol>
   {:else}
-    <p>No markers yet</p>
+    <p>Sem marcadores ainda.</p>
   {/if}
 </div>
 
